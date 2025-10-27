@@ -48,6 +48,39 @@ app.use(express.static("public"));
 // routers here
 app.get("/api/v1/health", (req, res) => res.status(200).send("ok"));
 
+// -------------------------------TO BE REMOVED----------------------------------
+import axios from "axios";
+import cron from "node-cron";
+import ServerError from "./src/common/errors/ServerError.js";
+
+process.on("uncaughtException", (err) =>
+  logger.error("Uncaught Exception:", err)
+);
+process.on("unhandledRejection", (err) =>
+  logger.error("Unhandled Rejection:", err)
+);
+cron.schedule("*/5 * * * *", async () => {
+  const tick = new Date().toISOString();
+  logger.http(`Cron job fired at ${tick}`);
+
+  try {
+    const { data, status } = await axios.get("http://www.google.com", {
+      timeout: 5000, // abort if >5s
+    });
+
+    if (status === 200) {
+      logger.info(`✅ Cron success, payload size: ${data.length}`);
+    } else {
+      logger.warn(`⚠️ Cron non-200 status: ${status}`);
+    }
+  } catch (err) {
+    // network/timeouts/socket errors end up here
+    logger.error("🚨 Cron HTTP error:", err.message);
+    throw new ServerError(502, err.message);
+  }
+});
+// -------------------------------ENDS----------------------------------
+
 app.use(errorHandler);
 
 connectDB()
