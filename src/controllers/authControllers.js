@@ -86,7 +86,7 @@ export const verifyOtp = async (req, res) => {
 
   if (otpCode !== isOtpValid.code) {
     logger.warn(`verifyOtp - invalid OTP for user ${user._id}`);
-    throw new ServerError(401, authControllersText.verifyOtp.invalidOtp);
+    throw new ServerError(400, authControllersText.verifyOtp.invalidOtp);
   }
 
   logger.info(`verifyOtp - OTP verified successfully for user ${user._id}`);
