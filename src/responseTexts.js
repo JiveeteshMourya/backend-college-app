@@ -104,4 +104,12 @@ export const authControllersText = {
     blocked: "User Id blocked, access denied",
     success: "OTP sent to your email",
   },
+  verifyOtp: {
+    notFound: "User does not exist",
+    blocked: "User Id blocked, access denied",
+    invalid: "Invalid otp submission",
+    invalidOtp: "Invalid OTP code",
+    otpExpired: "OTP has expired, please request a new one",
+    success: "OTP verified successfully",
+  },
 };

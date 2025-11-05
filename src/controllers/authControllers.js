@@ -1,10 +1,10 @@
-import logger from "../common/utils/logger";
+import logger from "../common/utils/logger.js";
 import getModelFromUserType from "../common/utils/getModelFromUserType.js";
 import ServerError from "../common/errors/ServerError.js";
 import { comparePassword } from "../common/utils/authHelper.js";
 import { generateAccessAndRefreshTokens } from "../common/utils/jwtHelper.js";
 import { authControllersText } from "../responseTexts.js";
-import ServerResponse from "../common/responses/ServerResponse.js";
+import ServerResponse from "../common/utils/ServerResponse.js";
 import OTP from "../models/otpModel.js";
 import { triggerNodeMailerEmail } from "../common/utils/emailHelper.js";
 
@@ -90,7 +90,7 @@ export const verifyOtp = async (req, res) => {
   }
 
   logger.info(`verifyOtp - OTP verified successfully for user ${user._id}`);
-  user.otp = undefined;
+  user.otp = null;
   await user.save();
   const { accessToken, refreshToken } =
     await generateAccessAndRefreshTokens(user);

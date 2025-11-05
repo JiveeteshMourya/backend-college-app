@@ -1,9 +1,9 @@
 import ServerError from "../errors/ServerError.js";
-import Student from "./models/studentModel.js";
-import Parent from "./models/parentModel.js";
-import Teacher from "./models/teacherModel.js";
-import Department from "./models/deptModel.js";
-import Club from "./models/clubModel.js";
+import Student from "../../models/studentModel.js";
+import Parent from "../../models/parentModel.js";
+import Teacher from "../../models/teacherModel.js";
+import Department from "../../models/deptModel.js";
+import Club from "../../models/clubModel.js";
 
 export const userTypeModels = {
   0: Student,

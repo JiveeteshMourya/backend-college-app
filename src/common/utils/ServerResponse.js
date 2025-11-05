@@ -7,4 +7,4 @@ class ServerResponse {
   }
 }
 
-export { ServerResponse };
+export default ServerResponse;

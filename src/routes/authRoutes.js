@@ -1,12 +1,12 @@
 import { Router } from "express";
-import wrapAsync from "../common/utils/wrapAsync";
-import { userLogin, verifyOtp } from "../controllers/authControllers";
-import { validateRequest } from "../middlewares/validationMiddlewares";
+import wrapAsync from "../common/utils/wrapAsync.js";
+import { userLogin, verifyOtp } from "../controllers/authControllers.js";
+import { validateRequest } from "../middlewares/validationMiddlewares.js";
 import {
   joiLoginSchema,
   joiVerifyOtpSchema,
-} from "../common/utils/joiValidationSchemas";
-import { otpLimiter } from "../middlewares/rateLimiterMiddlewares";
+} from "../common/utils/joiValidationSchemas.js";
+import { otpLimiter } from "../middlewares/rateLimiterMiddlewares.js";
 const router = Router();
 
 // open routes
