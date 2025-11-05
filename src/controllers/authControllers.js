@@ -108,3 +108,42 @@ export const verifyOtp = async (req, res) => {
     )
   );
 };
+
+export const refreshTokens = async (req, res) => {
+  logger.http(
+    `refreshTokens - POST ${req.originalUrl} payload=${JSON.stringify(req.body)}`
+  );
+  const Model = getModelFromUserType(req.params.userType);
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    logger.warn(`refreshTokens - missing refresh token`);
+    throw new ServerError(400, authControllersText.refreshTokens.missingToken);
+  }
+
+  const user = await Model.findOne({ refreshToken });
+  if (!user) {
+    logger.warn(`refreshTokens - invalid refresh token`);
+    throw new ServerError(401, authControllersText.refreshTokens.invalidToken);
+  }
+
+  const { accessToken, refreshTokens } =
+    await generateAccessAndRefreshTokens(user);
+  user.refreshToken = refreshTokens;
+  await user.save();
+
+  logger.info(
+    `refreshTokens - successfully generated new tokens for user ${user._id}`
+  );
+  return res.status(200).json(
+    new ServerResponse(
+      200,
+      {
+        user,
+        accessToken,
+        refreshToken: refreshTokens,
+      },
+      authControllersText.refreshTokens.success
+    )
+  );
+};

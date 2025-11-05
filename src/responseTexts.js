@@ -112,4 +112,9 @@ export const authControllersText = {
     otpExpired: "OTP has expired, please request a new one",
     success: "OTP verified successfully",
   },
+  refreshTokens: {
+    missingToken: "Refresh token is required",
+    invalidToken: "Invalid refresh token",
+    success: "Tokens refreshed successfully",
+  },
 };

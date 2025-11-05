@@ -1,6 +1,10 @@
 import { Router } from "express";
 import wrapAsync from "../common/utils/wrapAsync.js";
-import { userLogin, verifyOtp } from "../controllers/authControllers.js";
+import {
+  refreshTokens,
+  userLogin,
+  verifyOtp,
+} from "../controllers/authControllers.js";
 import { validateRequest } from "../middlewares/validationMiddlewares.js";
 import {
   joiLoginSchema,
@@ -16,10 +20,13 @@ router.post(
   validateRequest(joiLoginSchema),
   wrapAsync(userLogin)
 );
+
 router.post(
   "/verify-otp/:userType",
   validateRequest(joiVerifyOtpSchema),
   wrapAsync(verifyOtp)
 );
+
+router.post("/refresh-tokens/:userType", wrapAsync(refreshTokens));
 
 export default router;
