@@ -147,3 +147,22 @@ export const refreshTokens = async (req, res) => {
     )
   );
 };
+
+export const userInfo = async (req, res) => {
+  logger.http(
+    `userInfo - GET ${req.originalUrl} payload=${JSON.stringify(req.params)}`
+  );
+  const Model = getModelFromUserType(req.params.userType);
+  const user = await Model.findById(req.params.userId);
+  if (!user) {
+    logger.warn(`userInfo - user not found with id: ${req.params.userId}`);
+    throw new ServerError(404, authControllersText.userInfo.notFound);
+  }
+
+  logger.info(`userInfo - successfully retrieved info for user ${user._id}`);
+  return res
+    .status(200)
+    .json(
+      new ServerResponse(200, { user }, authControllersText.userInfo.success)
+    );
+};

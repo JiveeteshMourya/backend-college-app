@@ -117,4 +117,8 @@ export const authControllersText = {
     invalidToken: "Invalid refresh token",
     success: "Tokens refreshed successfully",
   },
+  userInfo: {
+    notFound: "User does not exist",
+    success: "User information retrieved successfully",
+  },
 };

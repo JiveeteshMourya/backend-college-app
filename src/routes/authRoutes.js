@@ -2,6 +2,7 @@ import { Router } from "express";
 import wrapAsync from "../common/utils/wrapAsync.js";
 import {
   refreshTokens,
+  userInfo,
   userLogin,
   verifyOtp,
 } from "../controllers/authControllers.js";
@@ -28,5 +29,8 @@ router.post(
 );
 
 router.post("/refresh-tokens/:userType", wrapAsync(refreshTokens));
+
+// protected routes
+router.get("/info/:userType/:userId", wrapAsync(userInfo));
 
 export default router;
