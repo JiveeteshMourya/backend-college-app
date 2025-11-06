@@ -40,7 +40,6 @@ export const authMiddlewaresText = {
   verifyAccessJWT: {
     unauth: "Unauthorized request",
     invalidToken: "Invalid Access Token",
-    notVerified: "Not a verified user, Verify first before accessing resources",
     idBlocked: "User Id blocked, access denied",
   },
   verifyResetJWT: {

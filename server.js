@@ -7,6 +7,8 @@ import morgan from "morgan";
 import logger from "./src/common/utils/logger.js";
 import { errorHandler } from "./src/middlewares/errorMiddlewares.js";
 import authRouter from "./src/routes/authRoutes.js";
+import classRouter from "./src/routes/classRoutes.js";
+import testRouter from "./src/routes/testRoutes.js";
 
 dotenv.config({ path: "./.env" });
 const app = express();
@@ -49,6 +51,8 @@ app.use(express.static("public"));
 // routers here
 app.get("/api/v1/health", (req, res) => res.status(200).send("ok"));
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/class", classRouter);
+app.use("/api/v1/test", testRouter);
 
 // -------------------------------TO BE REMOVED----------------------------------
 import axios from "axios";

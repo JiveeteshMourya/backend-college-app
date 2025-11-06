@@ -7,6 +7,8 @@ import { authControllersText } from "../responseTexts.js";
 import ServerResponse from "../common/utils/ServerResponse.js";
 import OTP from "../models/otpModel.js";
 import { triggerNodeMailerEmail } from "../common/utils/emailHelper.js";
+import Class from "../models/classModel.js";
+import mongoose from "mongoose";
 
 export const userLogin = async (req, res) => {
   logger.http(
@@ -166,3 +168,30 @@ export const userInfo = async (req, res) => {
       new ServerResponse(200, { user }, authControllersText.userInfo.success)
     );
 };
+
+// export const seedData = async(req, res) => {
+//   const data = {
+//   "education": "UG",
+//   "stream": "BSC",
+//   "semester": 5,
+//   "subject": "CS",
+//   "courseType": "MAJOR",
+//   "teacher": new mongoose.Types.ObjectId("690b98f61a398467f8548315"),
+//   "students": [
+//      new mongoose.Types.ObjectId("690b949653e7abffa35ec28a") ,
+//     new mongoose.Types.ObjectId("690b949653e7abffa35ec28b"),
+//     new mongoose.Types.ObjectId("690b949653e7abffa35ec28c"),
+//     new mongoose.Types.ObjectId("690b949653e7abffa35ec28d"),
+//     new mongoose.Types.ObjectId("690b949653e7abffa35ec28e")
+//   ],
+//   "year": 2025,
+// }
+//   const classer = await Class.create(data);
+//   if(!classer) {
+//     throw new ServerError(500, "Failed to seed data");
+//   }
+
+//   return res
+//     .status(201)
+//     .json(new ServerResponse(201, {classer}, "Data seeded successfully"));
+// }

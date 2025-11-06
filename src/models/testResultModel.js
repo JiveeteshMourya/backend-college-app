@@ -8,9 +8,15 @@ const testResultSchema = new mongoose.Schema(
       required: true,
     },
 
+    classId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Class",
+      required: true,
+    },
+
     studentId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Student",
       required: true,
     },
 
@@ -38,9 +44,7 @@ const testResultSchema = new mongoose.Schema(
       default: "PENDING",
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 const TestResult = mongoose.model("TestResult", testResultSchema);
