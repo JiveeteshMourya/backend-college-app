@@ -9,6 +9,8 @@ import { errorHandler } from "./src/middlewares/errorMiddlewares.js";
 import authRouter from "./src/routes/authRoutes.js";
 import classRouter from "./src/routes/classRoutes.js";
 import testRouter from "./src/routes/testRoutes.js";
+import parentRouter from "./src/routes/parentRoutes.js";
+import testResultRouter from "./src/routes/testResultRoutes.js";
 
 dotenv.config({ path: "./.env" });
 const app = express();
@@ -53,6 +55,8 @@ app.get("/api/v1/health", (req, res) => res.status(200).send("ok"));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/class", classRouter);
 app.use("/api/v1/test", testRouter);
+app.use("/api/v1/test-result", testResultRouter);
+app.use("/api/v1/parent", parentRouter);
 
 // -------------------------------TO BE REMOVED----------------------------------
 import axios from "axios";
