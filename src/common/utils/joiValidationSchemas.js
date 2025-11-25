@@ -76,3 +76,5 @@ const optionalObjectId = Joi.string().hex().length(24).optional().messages({
 
 export const joiLoginSchema = Joi.object({ email, password });
 export const joiVerifyOtpSchema = Joi.object({ email, otpCode });
+
+export const joiAttendanceSchema = Joi.object({});

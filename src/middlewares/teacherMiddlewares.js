@@ -22,5 +22,7 @@ export const isTeacher = wrapAsync(async (req, _, next) => {
   next();
 });
 
+export const isClassTeacher = wrapAsync(async (req, res) => {});
+
 // isTestOwner
 // isTeacherOrStudent

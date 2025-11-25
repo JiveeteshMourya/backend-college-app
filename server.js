@@ -11,6 +11,7 @@ import classRouter from "./src/routes/classRoutes.js";
 import testRouter from "./src/routes/testRoutes.js";
 import parentRouter from "./src/routes/parentRoutes.js";
 import testResultRouter from "./src/routes/testResultRoutes.js";
+import attendanceRouter from "./src/routes/attendanceRoutes.js";
 
 dotenv.config({ path: "./.env" });
 const app = express();
@@ -57,6 +58,7 @@ app.use("/api/v1/class", classRouter);
 app.use("/api/v1/test", testRouter);
 app.use("/api/v1/test-result", testResultRouter);
 app.use("/api/v1/parent", parentRouter);
+app.use("/api/v1/attendance", attendanceRouter);
 
 // -------------------------------TO BE REMOVED----------------------------------
 import axios from "axios";

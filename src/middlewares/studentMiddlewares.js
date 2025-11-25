@@ -21,3 +21,5 @@ export const isStudent = wrapAsync(async (req, _, next) => {
   );
   next();
 });
+
+export const isStudentOrParent = wrapAsync(async (req, _, next) => {});
